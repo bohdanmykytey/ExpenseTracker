@@ -1,69 +1,89 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 
-import './ExpenseForm.css';
+import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
-  // const [enteredTitle, setEnteredTitle] = useState('');
-  // const [enteredAmount, setEnteredAmount] = useState('');
-  // const [enteredDate, setEnteredDate] = useState('');
+const ExpenseForm = ({onSaveExpenseData}) => {
+  // instantiating state object
   const [userInput, setUserInput] = useState({
-    enteredTitle: '',
-    enteredAmount: '',
-    enteredDate: '',
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
   });
 
+  // updating state with setUserInput and spreading the prev state into the userInput
+  // object so its not lost when a piece of it is updated
   const titleChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      enteredTitle: event.target.value,
-    });
     setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: event.target.value };
+      return {...prevState, enteredTitle: event.target.value};
     });
   };
-
+ 
   const amountChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      enteredAmount: event.target.value,
+    setUserInput((prevState) => {
+      return {...prevState, enteredAmount: event.target.value};
     });
   };
 
   const dateChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      enteredDate: event.target.value,
+    setUserInput((prevState) => {
+      return {...prevState, enteredDate: event.target.value};
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: new Date(userInput.enteredDate).toDateString(),
+    };
+
+    setUserInput({
+      enteredTitle: "",
+      enteredAmount: "",
+      enteredDate: "",
+    });
+    // onSaveExpenseData is being passed in
+    // from app to be called below, leveraging
+    // state lifting
+    onSaveExpenseData(expenseData);
+  };
+
   return (
-    <form>
-      <div className='new-expense__controls'>
-        <div className='new-expense__control'>
+    <form onSubmit={handleSubmit}>
+      <div className="new-expense__controls">
+        <div className="new-expense__control">
           <label>Title</label>
-          <input type='text' onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={userInput.enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
-        <div className='new-expense__control'>
+        <div className="new-expense__control">
           <label>Amount</label>
           <input
-            type='number'
-            min='0.01'
-            step='0.01'
+            value={userInput.enteredAmount}
+            type="number"
+            min="0.01"
+            step="0.01"
             onChange={amountChangeHandler}
           />
         </div>
-        <div className='new-expense__control'>
+        <div className="new-expense__control">
           <label>Date</label>
           <input
-            type='date'
-            min='2019-01-01'
-            max='2022-12-31'
+            value={userInput.enteredDate}
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
             onChange={dateChangeHandler}
           />
         </div>
       </div>
-      <div className='new-expense__actions'>
-        <button type='submit'>Add Expense</button>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
       </div>
     </form>
   );

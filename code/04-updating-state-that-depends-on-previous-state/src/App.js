@@ -1,15 +1,19 @@
-import NewExpense from './components/NewExpense/NewExpense';
-import Expenses from './components/Expenses/Expenses';
-import expenses from './components/Expenses'
+import NewExpense from "./components/NewExpense/NewExpense";
+import Expenses from "./components/Expenses/Expenses";
+import expenses from "./components/Expenses";
 
 const App = () => {
+  const addExpense = (expense) => {
+    console.log(expense);
+    console.log('coming from app.js')
+  };
 
   return (
-    <div>
-      <NewExpense />
+    <>
+      <NewExpense onAddExpense={addExpense} />
       <Expenses items={expenses} />
-    </div>
+    </>
   );
-}
+};
 
 export default App;
