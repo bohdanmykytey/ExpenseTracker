@@ -1,7 +1,6 @@
 import "./ExpenseFilter.css";
 
 const ExpensesFilter = ({initialFilterSetting, onSelectYear}) => {
-  console.log(initialFilterSetting);
 
   const getExpenseYear = (event) => {
     onSelectYear(event.target.value);

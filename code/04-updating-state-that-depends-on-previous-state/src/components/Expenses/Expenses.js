@@ -13,7 +13,10 @@ const Expenses = (props) => {
 
   return (
     <Card className="expenses">
-      <ExpensesFilter initialFilterSetting={filteredYear} onSelectYear={onSelectYear} />
+      <ExpensesFilter
+        initialFilterSetting={filteredYear}
+        onSelectYear={onSelectYear}
+      />
 
       {props.items.map((expense) => {
         return (
