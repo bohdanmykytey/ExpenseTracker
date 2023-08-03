@@ -8,9 +8,9 @@ const NewExpense = ({onAddExpense}) => {
       ...savedExpenseData,
       id: Math.random().toString(),
     };
-    // onAddExpense is being passed in 
-    // from app to be called below, leveraging 
-    // state lifting 
+    // onAddExpense is being passed in
+    // from app to be called below, leveraging
+    // state lifting
     onAddExpense(expenseData);
   };
 

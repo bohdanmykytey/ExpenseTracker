@@ -2,10 +2,10 @@ import React from "react";
 import "./ExpenseDate.css";
 
 const ExpenseDate = (props) => {
-  console.log(props)
-  const month = props.date.toDateString().split(" ")[1];
-  const day = props.date.toDateString().split(" ")[0];
-  const year = props.date.toDateString().split(" ")[2];
+  // console.log(props.date);
+  const month = props.date.toString().split(" ")[1];
+  const day = props.date.toString().split(" ")[0].replace(",", "");
+  const year = props.date.toString().split(" ")[2];
 
   return (
     <div className="expense-date">

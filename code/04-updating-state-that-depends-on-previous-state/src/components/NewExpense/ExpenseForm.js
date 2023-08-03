@@ -17,7 +17,7 @@ const ExpenseForm = ({onSaveExpenseData}) => {
       return {...prevState, enteredTitle: event.target.value};
     });
   };
- 
+
   const amountChangeHandler = (event) => {
     setUserInput((prevState) => {
       return {...prevState, enteredAmount: event.target.value};
@@ -32,11 +32,10 @@ const ExpenseForm = ({onSaveExpenseData}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const expenseData = {
       title: userInput.enteredTitle,
       amount: userInput.enteredAmount,
-      date: new Date(userInput.enteredDate)
+      date: new Date(userInput.enteredDate).toUTCString()
     };
 
     setUserInput({

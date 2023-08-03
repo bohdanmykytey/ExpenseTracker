@@ -7,7 +7,7 @@ const App = () => {
   const [expenses, setNewExpenses] = useState(initialExpenses);
 
   const addExpense = (expense) => {
-    console.log(expense.date);
+    // console.log(expense);
     setNewExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
